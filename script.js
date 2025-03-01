@@ -5,17 +5,17 @@ const weatherInfoSection = document.querySelector('.weather-info')
 const notFoundSection = document.querySelector('.not-found')
 const searchCitySelection = document.querySelector('.search-city')
 
-const countryTxt = document.querySelector('.country-txt')
+const countryTxt = document.querySelector('.country-text')
 const tempTxt = document.querySelector('.temp-txt')
 const conditionTxt = document.querySelector('.condition-txt')
-const humidityValueTxt = document.querySelector('.humidity-value-txt')
-const windValueTxt = document.querySelector('.wind-value-txt')
-const weatherSummaryImg = document.querySelector('weather-summary-img')
-const currentDataTxt = document.querySelector('.current-date-txt')
+const humidityValueTxt = document.querySelector('.humidity-value-text')
+const windValueTxt = document.querySelector('.wind-value-text')
+const weatherSummaryImg = document.querySelector('.weather-summary-img')
+const currentDateTxt = document.querySelector('.current-date-txt')
 
-const forecastItemsContainer = document.querySelector('.forecast-item-container')
+const forecastItemsContainer = document.querySelector('.forecast-items-container')
 
-const apiKey = 'c9f9758c288153ac20998b8e7176d65b'
+const apiKey = '38aea10b944bb8cac398aaba446d8647'
 
 
 
@@ -28,8 +28,7 @@ searchBtn.addEventListener('click', () => {
     }
 })
 cityInput.addEventListener('keydown', (event) => {
-    if (event.key == 'Enter' &&
-        cityInput.value.trim() != ''
+    if (event.key == 'Enter' && cityInput.value.trim() != ''
     ) {
         updateWeatherInfo(cityInput.value)
         cityInput.value = ''
@@ -46,7 +45,7 @@ async function getFetchData(endPoint, city) {
     return response.json()
 }
 
-function getWeaatherIcon(id) {
+function getWeatherIcon(id) {
     if (id <= 232) return 'thunderstorm.svg'
     if (id <= 321) return 'drizzle.svg'
     if (id <= 531) return 'rain.svg'
@@ -77,7 +76,6 @@ async function updateWeatherInfo(city) {
     }
 
 
-
     const {
         name: country,
         main: { temp, humidity },
@@ -92,9 +90,9 @@ async function updateWeatherInfo(city) {
     humidityValueTxt.textContent = humidity + '%'
     windValueTxt.textContent = speed + 'M/s'
 
-    currentDataTxt.textContent = getCurrentDate()
+    currentDateTxt.textContent = getCurrentDate()
 
-    weatherSummaryImg.src = `assets/weather/${getWeaatherIcon(id)}`
+    weatherSummaryImg.src = `assets/weather/${getWeatherIcon(id)}`
 
 
     await updateForecastsInfo(city)
@@ -111,7 +109,7 @@ async function updateForecastsInfo(city) {
 
     forecastItemsContainer.innerHTML = ''
     forecastsData.list.forEach(forecastWeather => {
-        if (forecastWeather.dt_txt.includes(timeTaken) & !forecastWeather.dt_txt.includes(todayDate)) {
+        if (forecastWeather.dt_txt.includes(timeTaken) && !forecastWeather.dt_txt.includes(todayDate)) {
             updateForecastItems(forecastWeather)
         }
     })
@@ -131,13 +129,13 @@ function updateForecastItems(weatherData) {
     const dateResult = dateTaken.toLocaleDateString('en-US',dateOption)
     const forecastItem = `
         <div class="forecast-item">
-            <h5 class="forecast-item-date regular-text">${dateResult}</h5>
-            <img src="assets/weather/${getWeaatherIcon(id)}
-            " alt="" class="forecast-item-img">
+            <h5 class="forecast-item-date regular-text">${dateResult}
+            </h5> <img src="assets/weather/${getWeatherIcon(id)}" alt="" class="forecast-item-img">
+
             <h5 class="forecast-item-temp">${Math.round(temp)} ℃</h5>
         </div>
     `
-    forecastItemsContainer.insertAdjacentElement('beforeend',forecastItem)
+    forecastItemsContainer.insertAdjacentHTML('beforeend',forecastItem)
 }
 
 function showDisplaySection(section) {
