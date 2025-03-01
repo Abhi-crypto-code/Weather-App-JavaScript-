@@ -105,7 +105,7 @@ end container
 .weather-summary-info{
     text-align: end;
 }
-.weather-conidition-container{
+.weather-condition-container{
     display: flex;
     justify-content: space-between;
 }
@@ -119,12 +119,12 @@ end container
 }
 .forecast-items-container{
     display: flex;
-    gap: 15px;
+    gap: 5px;
     overflow: scroll;
-    padding-bottom: 12px;
+    /* padding-bottom: 8px; */
 }
 .forecast-items-container::-webkit-scrollbar{
-    height: 8px;
+    height: 12px;
 }
 .forecast-items-container::-webkit-scrollbar-track{
     background: rgb(0,0,0,0.1);
@@ -166,4 +166,3 @@ end container
     height: 180px;
     width: fit-content;
 }
-/* end Section message*/
