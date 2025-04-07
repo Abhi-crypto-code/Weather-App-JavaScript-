@@ -117,12 +117,20 @@ end container
 .condition-item span{
     font-size: 30px;
 }
-.forecast-items-container{
+
+.forecast-items-container {
     display: flex;
     gap: 5px;
-    overflow: scroll;
-    /* padding-bottom: 8px; */
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;  
 }
+
+.forecast-items-container::-webkit-scrollbar {
+    display: none; 
+}
+
 .forecast-items-container::-webkit-scrollbar{
     height: 12px;
 }
@@ -166,3 +174,4 @@ end container
     height: 180px;
     width: fit-content;
 }
+/* end Section message*/
