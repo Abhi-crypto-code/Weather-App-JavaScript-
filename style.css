@@ -131,9 +131,9 @@ end container
     display: none; 
 }
 
-.forecast-items-container::-webkit-scrollbar{
+/* .forecast-items-container::-webkit-scrollbar{
     height: 12px;
-}
+} */
 .forecast-items-container::-webkit-scrollbar-track{
     background: rgb(0,0,0,0.1);
     border-radius: 99px;
